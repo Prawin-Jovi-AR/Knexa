@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            
+            <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html" class="active">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="messages.html" class="btn btn-outline" style="border:none; padding: 0.5rem;" title="Messages">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="profile.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Profile</a>
+                        </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+    
+    <div class="discover-hero" style="padding: 8rem 2rem 4rem; text-align: center; background: var(--color-bg-alt); border-bottom: 1px solid var(--color-border);">
+        <h1 class="section-title text-gradient" style="font-size: 3rem;">Discover Your Next Connection</h1>
+        <p class="section-subtitle" style="max-width: 600px; margin: 0 auto 2rem;">Find people who know what you want to learn — and people who want to learn what you know.</p>
+        
+        <div style="max-width: 800px; margin: 0 auto; position: relative;">
+            <input type="text" id="discover-search" class="form-input" placeholder="Search for a person, skill, topic or community..." style="padding: 1.5rem 2rem 1.5rem 3.5rem; font-size: 1.1rem; border-radius: 999px; box-shadow: var(--shadow-md);">
+            <i class="fas fa-search" style="position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.25rem; color: var(--color-text-muted);"></i>
+            <button class="btn btn-primary" id="btn-discover-search" style="position: absolute; right: 0.5rem; top: 0.5rem; bottom: 0.5rem; border-radius: 999px; padding: 0 2rem;">Discover</button>
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;">
+            <span style="font-size: 0.875rem; color: var(--color-text-muted); margin-right: 0.5rem; align-self: center;">Popular:</span>
+            <button class="search-chip">Python</button>
+            <button class="search-chip">UI/UX</button>
+            <button class="search-chip">Photography</button>
+            <button class="search-chip">Robotics</button>
+            <button class="search-chip">Public Speaking</button>
+            <button class="search-chip">Machine Learning</button>
+        </div>
+    </div>
+
+    
+    <div class="container" style="padding-top: 2rem; min-height: 100vh; padding-bottom: 4rem;">
+        
+        
+        <div class="discover-tabs">
+            <button class="tab-btn active" data-tab="people">PEOPLE</button>
+            <button class="tab-btn" data-tab="skills">SKILLS</button>
+            <button class="tab-btn" data-tab="knowledge">KNOWLEDGE</button>
+            <button class="tab-btn" data-tab="communities">COMMUNITIES</button>
+        </div>
+
+        <div class="discover-layout">
+            
+            
+            <div class="filter-sidebar" id="filter-sidebar">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin: 0;"><i class="fas fa-filter"></i> Filters</h3>
+                    <button class="btn btn-outline" id="btn-clear-filters" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Clear</button>
+                </div>
+
+                
+                <div id="filter-content">
+                    
+                </div>
+            </div>
+
+            
+            <div class="discover-results">
+                
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 id="results-heading" style="font-size: 1.25rem; margin: 0;">Recommended For You</h2>
+                    <select id="sort-select" class="form-input" style="width: auto; padding: 0.5rem 2rem 0.5rem 1rem; border-radius: var(--border-radius-md);">
+                        <option value="highest_match">Highest Match</option>
+                        <option value="most_relevant">Most Relevant</option>
+                        <option value="most_followers">Most Followers</option>
+                        <option value="recent">Recently Joined</option>
+                    </select>
+                </div>
+
+                
+                <div id="loading-state" style="text-align: center; padding: 4rem;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--color-primary); margin-bottom: 1rem;"></i>
+                    <h3>Searching the network...</h3>
+                </div>
+
+                
+                <div id="empty-state" class="hidden" style="text-align: center; padding: 4rem; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg);">
+                    <i class="fas fa-search" style="font-size: 3rem; color: var(--color-text-muted); margin-bottom: 1rem;"></i>
+                    <h3>No matches found.</h3>
+                    <p style="color:var(--color-text-muted); margin-bottom: 1.5rem;">Try searching for a broader skill or removing some filters.</p>
+                    <button class="btn btn-outline" id="btn-empty-clear">Clear Filters</button>
+                    <a href="skill-dna.html" class="btn btn-primary">Update Skill DNA</a>
+                </div>
+
+                
+                <div id="error-state" class="hidden" style="text-align: center; padding: 4rem; background: var(--color-bg-card); border: 1px solid var(--color-danger, red); border-radius: var(--border-radius-lg);">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--color-danger, red); margin-bottom: 1rem;"></i>
+                    <h3>Unable to load Discover</h3>
+                    <p style="color:var(--color-text-muted); margin-bottom: 1.5rem;" id="error-message-text">Something went wrong.</p>
+                    <button class="btn btn-primary" onclick="window.location.reload()">Try Again</button>
+                </div>
+
+                
+                <div class="discover-grid" id="discover-grid">
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div class="modal-overlay hidden" id="modal-ai-insights">
+        <div class="modal-content auth-card" style="max-width: 600px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-magic" style="color:var(--color-primary);"></i> AI Skill Insights</h2>
+                <button class="btn btn-outline" id="close-ai-insights" aria-label="Close AI Skill Insights" style="border:none; padding: 0.5rem;"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="ai-insight-content" style="min-height: 150px; padding: 1.5rem; background: var(--color-bg); border-radius: var(--border-radius-md); border: 1px solid var(--color-border); font-family: monospace; white-space: pre-wrap; line-height: 1.6;"></div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay hidden" id="skill-request-modal">
+        <div class="modal-content auth-card" style="max-width: 500px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0;">Request Skill</h3>
+                <button class="btn btn-outline" id="close-modal" style="border:none; padding: 0.5rem;"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="skill-request-form">
+                <input type="hidden" id="req-target-id">
+                
+                <div class="form-group">
+                    <label>Requested Person</label>
+                    <input type="text" id="req-person-name" class="form-input" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label>Skill</label>
+                    <select id="req-skill-name" class="form-input"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="req-message" class="form-input" rows="4" placeholder="I would like to learn this because..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="btn-submit-request">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/ai-helper.js"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module" src="js/discover.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+<style>
+.community-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    min-height: calc(100vh - 120px);
+}
+@media (max-width: 768px) {
+    .community-layout {
+        grid-template-columns: 1fr;
+    }
+}
+.community-list {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.community-item {
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    background: var(--color-bg-alt);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+.community-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+.community-item.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+}
+.community-item.active p {
+    color: rgba(255,255,255,0.8) !important;
+}
+.chat-window {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.chat-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--color-bg-alt);
+    min-height: 400px;
+}
+.chat-input {
+    padding: 1.5rem;
+    background: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: 1rem;
+}
+.message-bubble {
+    max-width: 70%;
+    padding: 1rem;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+}
+.message-bubble.own {
+    align-self: flex-end;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+}
+.message-bubble.own p {
+    color: rgba(255,255,255,0.9) !important;
+}
+.message-bubble.own h5 {
+    color: white;
+}
+.message-bubble:hover .msg-actions {
+    display: flex !important;
+}
+</style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            
+            <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="messages.html" class="btn btn-outline" style="border:none; padding: 0.5rem;" title="Messages">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="profile.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Profile</a>
+                        </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+    
+    <div class="container" style="padding-top: 8rem; padding-bottom: 4rem;">
+        
+        <div class="community-layout">
+            
+            <div class="community-list">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0;">Your Groups</h3>
+                    <button class="btn btn-primary btn-small" onclick="document.getElementById('modal-create-group').classList.remove('hidden')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div id="groups-container" style="display:flex; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+                    
+                </div>
+            </div>
+
+            
+            <div class="chat-window">
+                <div class="chat-header">
+                    <div>
+                        <h2 id="chat-title" style="margin:0;">Select a Group</h2>
+                        <p id="chat-desc" style="color:var(--color-text-muted); font-size:0.875rem; margin-top:0.25rem;">Join a community to start messaging.</p>
+                    </div>
+                    <button id="btn-join-group" class="btn btn-primary hidden">Join Group</button>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div style="text-align:center; padding: 3rem; color:var(--color-text-muted);">
+                        <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Select a group from the sidebar or create a new one.</p>
+                    </div>
+                </div>
+                
+                <form class="chat-input hidden" id="chat-form">
+                    <input type="text" id="chat-input" class="form-input" placeholder="Type your message..." required style="flex:1;">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div id="modal-create-group" class="modal-overlay hidden">
+        <div class="modal-content auth-card">
+            <span class="close-btn" onclick="document.getElementById('modal-create-group').classList.add('hidden')">&times;</span>
+            <h2>Create a Project Group</h2>
+            <form id="form-create-group" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Group Name</label>
+                    <input type="text" id="group-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="group-category" class="form-input" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Science">Science</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="group-desc" class="form-input" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Group</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module" src="js/communities.js"></script>
+</body>
+</html>

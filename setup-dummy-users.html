@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Setup</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        #log { background: #f4f4f4; padding: 1rem; height: 300px; overflow-y: scroll; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Knexa Dummy Database Setup</h1>
+    <p>This script will officially connect the dummy users to the Supabase Authentication system so you can log in as them!</p>
+    <p><strong>Password for all users:</strong> TechLead2026!</p>
+    <button id="start-btn" style="padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Start Setup</button>
+    <div id="log" style="margin-top: 20px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { supabase } from './js/supabase-config.js';
+
+        const logEl = document.getElementById('log');
+        function log(msg) {
+            logEl.innerHTML += `<div>${msg}</div>`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        const dummyUsers = [
+            {
+                email: 'chenw@knexa.local',
+                username: 'chenw',
+                full_name: 'Chen Wei',
+                country: 'China',
+                bio: 'AI Researcher passionate about deep learning.',
+                shared: [{name: 'Machine Learning', cat: 'Technology'}, {name: 'Python', cat: 'Technology'}],
+                learning: [{name: 'React', cat: 'Technology', prog: 85}],
+                exploring: [{name: 'Artificial Intelligence', cat: 'Technology'}],
+                posts: [{content: 'Just published a new paper on optimizing neural networks. AI is moving so fast! #MachineLearning', cat: 'Technology'}]
+            },
+            {
+                email: 'alexm@knexa.local',
+                username: 'alexm',
+                full_name: 'Alex Mercer',
+                country: 'USA',
+                bio: 'Software Engineer building scalable backends.',
+                shared: [{name: 'Java', cat: 'Technology'}],
+                learning: [{name: 'Go', cat: 'Technology', prog: 20}],
+                exploring: [],
+                posts: [{content: 'Does anyone else prefer Java over Go for enterprise backends? Let\'s debate.', cat: 'Technology'}]
+            },
+            {
+                email: 'mariag@knexa.local',
+                username: 'mariag',
+                full_name: 'Maria Garcia',
+                country: 'Spain',
+                bio: 'UI/UX Designer crafting beautiful digital experiences.',
+                shared: [{name: 'Figma', cat: 'Design'}],
+                learning: [{name: 'Python', cat: 'Technology', prog: 50}, {name: 'JavaScript', cat: 'Technology', prog: 60}],
+                exploring: [],
+                posts: [{content: 'Started learning Python today! Any tips for a designer jumping into code?', cat: 'Technology'}]
+            },
+            {
+                email: 'georgem@knexa.local',
+                username: 'georgem',
+                full_name: 'George Miller',
+                country: 'Australia',
+                bio: 'Photographer and visual artist.',
+                shared: [{name: 'Photography', cat: 'Art'}],
+                learning: [{name: 'Cinematography', cat: 'Video', prog: 15}],
+                exploring: [],
+                posts: [{content: 'The lighting in the city today is absolutely perfect for street photography.', cat: 'Art'}]
+            }
+        ];
+
+        document.getElementById('start-btn').addEventListener('click', async () => {
+            document.getElementById('start-btn').disabled = true;
+            log('Starting database auth setup...');
+
+            for (const u of dummyUsers) {
+                log(`Processing ${u.email}...`);
+                
+                // 1. Sign Up
+                const { data: authData, error: authError } = await supabase.auth.signUp({
+                    email: u.email,
+                    password: 'TechLead2026!'
+                });
+
+                let userId;
+                if (authError) {
+                    if (authError.message.includes('already registered')) {
+                        log(`<span style="color:orange">User ${u.email} already exists. Logging in to get ID...</span>`);
+                        const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+                            email: u.email,
+                            password: 'TechLead2026!'
+                        });
+                        if (signInError) {
+                            log(`<span style="color:red">SignIn Error for ${u.email}: ${signInError.message}</span>`);
+                            continue;
+                        }
+                        userId = signInData.user.id;
+                    } else {
+                        log(`<span style="color:red">Auth Error for ${u.email}: ${authError.message}</span>`);
+                        continue;
+                    }
+                } else {
+                    userId = authData.user.id;
+                }
+
+                log(`<span style="color:green">Successfully resolved auth user for ${u.username} (ID: ${userId})</span>`);
+
+                // Cleanup old profile and related data to avoid conflicts
+                const { data: oldProfile } = await supabase.from('profiles').select('id').eq('username', u.username).single();
+                if (oldProfile && oldProfile.id !== userId) {
+                    const oldId = oldProfile.id;
+                    log(`Cleaning up old data for ${u.username} (Old ID: ${oldId})`);
+                    await supabase.from('skills_shared').delete().eq('user_id', oldId);
+                    await supabase.from('skills_learning').delete().eq('user_id', oldId);
+                    await supabase.from('skills_exploring').delete().eq('user_id', oldId);
+                    await supabase.from('posts').delete().eq('user_id', oldId);
+                    await supabase.from('profiles').delete().eq('id', oldId);
+                }
+
+                // 2. Profile
+                // Note: If your app has a database trigger that auto-creates profiles on signup, this upsert handles it.
+                await supabase.from('profiles').upsert({
+                    id: userId,
+                    full_name: u.full_name,
+                    username: u.username,
+                    country: u.country,
+                    bio: u.bio,
+                    followers_count: Math.floor(Math.random() * 200),
+                    following_count: Math.floor(Math.random() * 100),
+                    connections_count: Math.floor(Math.random() * 50),
+                    skills_shared_count: u.shared.length,
+                    skills_learning_count: u.learning.length
+                });
+
+                // 3. Insert Skills
+                if(u.shared.length > 0) {
+                    await supabase.from('skills_shared').insert(u.shared.map(s => ({ user_id: userId, skill_name: s.name, category: s.cat })));
+                }
+                if(u.learning.length > 0) {
+                    await supabase.from('skills_learning').insert(u.learning.map(s => ({ user_id: userId, skill_name: s.name, category: s.cat, progress: s.prog })));
+                }
+                if(u.exploring.length > 0) {
+                    await supabase.from('skills_exploring').insert(u.exploring.map(s => ({ user_id: userId, skill_name: s.name, category: s.cat })));
+                }
+
+                // 4. Insert Posts
+                if(u.posts.length > 0) {
+                    await supabase.from('posts').insert(u.posts.map(p => ({ user_id: userId, content: p.content, category: p.cat })));
+                }
+
+                log(`Finished populating profile data for ${u.username}.`);
+            }
+
+            log('<b><span style="color:green">All done! You can now log into any of these accounts using their email and "TechLead2026!"</span></b>');
+        });
+    </script>
+</body>
+</html>

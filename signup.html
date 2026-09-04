@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body class="auth-page">
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            <div class="nav-menu" style="display: flex; justify-content: flex-end; width: 100%;">
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Join KNEXA</h2>
+            <p class="auth-subtitle">Create an account to start sharing and learning.</p>
+            
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" class="form-input" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" class="form-input" required placeholder="janedoe123">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" class="form-input" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="signup-country">Country</label>
+                    <select id="signup-country" class="form-input" required>
+                        <option value="">Select a country</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                        <option value="IN">India</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signup-gender">Gender</label>
+                    <select id="signup-gender" class="form-input" required>
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Prefer not to say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-input" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" class="form-input" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create My KNEXA Account</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>
+

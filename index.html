@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNEXA | Connect Knowledge. Create Possibilities.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">KNEXA</a>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <section id="home" class="hero section-padding">
+        <div class="hero-container">
+            <div class="hero-content reveal">
+                <h1 class="hero-title">
+                    Connect Knowledge.<br>
+                    <span class="text-gradient">Create Possibilities.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Everyone knows something. Everyone has something to learn. KNEXA brings people together to exchange
+                    skills, discover knowledge and grow together.
+                </p>
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary btn-large">Join KNEXA</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal reveal-delay">
+                <div class="abstract-shape shape-1"></div>
+                <div class="abstract-shape shape-2"></div>
+                <div class="abstract-shape shape-3"></div>
+                <div class="glass-card user-card-1">
+                    <img src="images/Alex.png" alt="Arokiaraj Jovith" class="avatar"
+                        style="object-fit: cover; object-position: center;">
+                    <div class="user-info">
+                        <h4>Alex</h4>
+                        <p>Can teach: UI/UX Design</p>
+                    </div>
+                </div>
+                <div class="glass-card user-card-2">
+                    <img src="images/John.jpeg" alt="Prawin Jovi" class="avatar"
+                        style="object-fit: cover; object-position: center 15%;">
+                    <div class="user-info">
+                        <h4>John</h4>
+                        <p>Wants to learn: UI/UX Design</p>
+                    </div>
+                </div>
+                <div class="connection-line">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="how-it-works" class="how-it-works section-bg section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">How KNEXA Works</h2>
+                <p class="section-subtitle">Your journey to new knowledge begins here.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-number">01</div>
+                    <div class="step-icon"><i class="fas fa-share-alt"></i></div>
+                    <h3>Tell Us What You Know</h3>
+                    <p>Add the skills and knowledge you can share with the community.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-number">02</div>
+                    <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Tell Us What You Want</h3>
+                    <p>Choose the skills and goals you want to explore and learn.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-number">03</div>
+                    <div class="step-icon"><i class="fas fa-search-location"></i></div>
+                    <h3>Discover Your Match</h3>
+                    <p>KNEXA finds people with complementary knowledge to connect with.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-number">04</div>
+                    <div class="step-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Learn & Share</h3>
+                    <p>Exchange knowledge, grow together, and achieve your goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="features" class="features section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">More Than Learning</h2>
+                <p class="section-subtitle">A platform built for meaningful exchanges and growth.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fas fa-dna"></i></div>
+                    <h3>Skill DNA</h3>
+                    <p>Understand what you know and what you want to learn.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Smart Matching</h3>
+                    <p>Find people whose skills complement yours.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Knowledge Exchange</h3>
+                    <p>Turn your knowledge into someone else's opportunity.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Skill Growth</h3>
+                    <p>See your learning journey develop over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="trending" class="trending section-bg section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Trending Skills</h2>
+                <p class="section-subtitle">Discover what the KNEXA community is learning right now.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-category">Programming</span>
+                        <i class="fab fa-python skill-icon"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 12.5k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 15%</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal reveal-delay-1">
+                    <div class="skill-header">
+                        <span class="skill-category">Design</span>
+                        <i class="fas fa-pen-nib skill-icon"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 9.2k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 22%</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal reveal-delay-2">
+                    <div class="skill-header">
+                        <span class="skill-category">Creative</span>
+                        <i class="fas fa-camera skill-icon"></i>
+                    </div>
+                    <h3>Photography</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 8.4k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 8%</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal reveal-delay-3">
+                    <div class="skill-header">
+                        <span class="skill-category">Communication</span>
+                        <i class="fas fa-microphone skill-icon"></i>
+                    </div>
+                    <h3>Public Speaking</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 6.7k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 12%</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal reveal-delay-4">
+                    <div class="skill-header">
+                        <span class="skill-category">Media</span>
+                        <i class="fas fa-video skill-icon"></i>
+                    </div>
+                    <h3>Video Editing</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 10.1k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 18%</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal reveal-delay-5">
+                    <div class="skill-header">
+                        <span class="skill-category">Marketing</span>
+                        <i class="fas fa-bullhorn skill-icon"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <div class="skill-stats">
+                        <span><i class="fas fa-users"></i> 11.3k learners</span>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> 10%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding" style="background-color: var(--color-bg-card); padding-top: 3rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <img src="images/prawin.jpg" alt="Prawin Jovi"
+                    style="display: block; margin: 0 auto 1.5rem auto; width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 4px solid var(--color-primary); box-shadow: var(--shadow-md);">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Contact: ar.prawinjovi@gmail.com</p>
+            </div>
+            <div class="reveal"
+                style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--color-text-muted); text-align: center;">
+                <p>Hi, I’m <strong>Prawin Jovi</strong>, a passionate student, developer, and technology enthusiast who
+                    enjoys turning creative ideas into practical solutions. I’m interested in <strong>web development,
+                        Python, AI, IoT, robotics, and electronics</strong>. I love building innovative projects,
+                    experimenting with new technologies, and solving real-world problems through technology.</p>
+                <p style="margin-top: 1rem;">I’m always eager to learn, collaborate, and transform ideas into meaningful
+                    projects. My goal is to keep improving my skills and create technology that can make a real
+                    difference.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="final-cta section-padding">
+        <div class="cta-container reveal">
+            <div class="cta-content">
+                <h2>Your Knowledge Can Take Someone Further.</h2>
+                <p>Share what you know. Discover what you don't. Grow together with KNEXA.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-large">Join KNEXA</a>
+                    <a href="#trending" class="btn btn-outline btn-large cta-outline">Explore Skills</a>
+                </div>
+            </div>
+            <div class="cta-shapes">
+                <div class="cta-shape cta-shape-1"></div>
+                <div class="cta-shape cta-shape-2"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>KNEXA</h2>
+                    <p>"Connect Knowledge. Create Possibilities."</p>
+                    <div class="social-icons" style="display:none;">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="discover.html">Discover</a></li>
+                        <li><a href="feed.html">Knowledge Hub</a></li>
+
+                        <li><a href="skill-dna.html">Skill DNA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KNEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="module" src="js/app.js?v=2"></script>
+</body>
+
+</html>

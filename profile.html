@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            
+            <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html" class="active">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="messages.html" class="btn btn-outline" style="border:none; padding: 0.5rem;"><i class="fas fa-envelope"></i></a>
+                <a href="profile.html" class="btn btn-primary active" style="padding: 0.5rem 1rem;">Profile</a>
+                        </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+    
+    <div class="container" style="padding-top: 8rem; min-height: 100vh; padding-bottom: 4rem;">
+        
+        <div class="profile-layout">
+            
+            
+            <div class="profile-sidebar">
+                <div class="profile-identity-card auth-card" style="text-align: center; padding: 2rem;">
+                    <div class="profile-avatar-large" id="profile-avatar-initial">?</div>
+                    
+                    <h2 id="profile-name" style="margin-top: 1rem; margin-bottom: 0.25rem;">Loading...</h2>
+                    <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+                        <span id="profile-username">@loading</span> • <span id="profile-country">Earth</span>
+                    </p>
+
+                    <div class="profile-stats-row" style="display: flex; justify-content: center; gap: 1.0rem;">
+                        <div class="stat-col" style="text-align: center; cursor: pointer;" onclick="window.openStatsModal('followers')">
+                            <span class="stat-num" id="profile-followers">0</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat-col" style="text-align: center; cursor: pointer;" onclick="window.openStatsModal('following')">
+                            <span class="stat-num" id="profile-following">0</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                        <div class="stat-col" style="text-align: center; cursor: pointer;" onclick="window.openStatsModal('connections')">
+                            <span class="stat-num" id="profile-connections">0</span>
+                            <span class="stat-label">Connections</span>
+                        </div>
+                    </div>
+
+                    <button id="btn-edit-profile" class="btn btn-outline btn-full" style="margin-top: 1.5rem;"><i class="fas fa-edit"></i> Edit Profile</button>
+                </div>
+
+                <div class="profile-bio-card auth-card" style="margin-top: 1.5rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-user"></i> About Me</h3>
+                    <p id="profile-bio" style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">
+                        No bio written yet.
+                    </p>
+                </div>
+            </div>
+
+            
+            <div class="profile-main">
+                
+                
+                <div class="compact-dna-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="margin: 0;"><i class="fas fa-dna" style="color:var(--color-primary);"></i> Skill DNA Overview</h3>
+                        <a href="skill-dna.html" class="text-link" style="font-size: 0.875rem; font-weight: 600;">View Full Skill DNA &rarr;</a>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="dna-percentage-small" id="dash-dna-percentage">0%</div>
+                        <div class="progress-bar-container" style="flex: 1; margin: 0; height: 8px;">
+                            <div class="progress-bar-fill" id="dash-dna-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="profile-skills-grid">
+                    
+                    
+                    <div class="auth-card" style="padding: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem; font-size: 1rem; display:flex; align-items:center; gap:0.5rem;">
+                            <i class="fas fa-brain" style="color:var(--color-primary);"></i> Skills I Can Share
+                        </h3>
+                        <ul class="profile-skill-list" id="list-shared">
+                            <li class="empty-list">No skills shared yet.</li>
+                        </ul>
+                    </div>
+
+                    
+                    <div class="auth-card" style="padding: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem; font-size: 1rem; display:flex; align-items:center; gap:0.5rem;">
+                            <i class="fas fa-seedling" style="color:var(--color-secondary);"></i> Skills I Am Learning
+                        </h3>
+                        <ul class="profile-skill-list" id="list-learning">
+                            <li class="empty-list">Not learning any skills yet.</li>
+                        </ul>
+                    </div>
+
+                    
+                    <div class="auth-card" style="padding: 1.5rem; grid-column: 1 / -1;">
+                        <h3 style="margin-bottom: 1rem; font-size: 1rem; display:flex; align-items:center; gap:0.5rem;">
+                            <i class="fas fa-telescope" style="color:#8b5cf6;"></i> Skills I Want to Explore
+                        </h3>
+                        <ul class="profile-skill-list" id="list-exploring">
+                            <li class="empty-list">No exploration goals set yet.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="auth-card" style="margin-top: 1.5rem; padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="margin: 0; font-size: 1.1rem;"><i class="fas fa-bullseye" style="color: var(--color-primary);"></i> Current Learning Goals</h3>
+                        <button class="btn btn-outline btn-small" id="btn-add-goal" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;"><i class="fas fa-plus"></i> Add Goal</button>
+                    </div>
+                    <ul class="profile-skill-list" id="list-goals">
+                        <li class="empty-list">No goals set yet.</li>
+                    </ul>
+                </div>
+
+                
+                <div class="auth-card" style="margin-top: 1.5rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-handshake" style="color: var(--color-secondary);"></i> Skill Requests</h3>
+                    <div id="list-skill-requests">
+                        <p class="empty-list">No skill requests found.</p>
+                    </div>
+                </div>
+
+                
+                <div class="auth-card" style="margin-top: 1.5rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-trophy" style="color: #fbbf24;"></i> Achievements</h3>
+                    <div class="achievements-grid" id="profile-achievements" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem;">
+                        <p class="empty-list" style="grid-column: 1 / -1;">Calculating achievements...</p>
+                    </div>
+                </div>
+
+                
+                <div class="auth-card" style="margin-top: 1.5rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="fas fa-pen-nib" style="color: var(--color-secondary);"></i> Knowledge Posts</h3>
+                    <div id="profile-posts-list" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <p class="empty-list">No knowledge shared yet.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div class="modal-overlay hidden" id="modal-add-goal">
+        <div class="modal-content auth-card" style="max-width: 500px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0;">Add Learning Goal</h3>
+                <button class="btn btn-outline" id="close-goal-modal" style="border:none; padding: 0.5rem;"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="form-add-goal">
+                <div class="form-group">
+                    <label>Goal Title</label>
+                    <input type="text" id="goal-title" class="form-input" placeholder="e.g. Master React Hooks" required>
+                </div>
+                <div class="form-group">
+                    <label>Target Date</label>
+                    <input type="date" id="goal-date" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="btn-save-goal">Save Goal</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay hidden" id="modal-edit-profile">
+        <div class="modal-content auth-card" style="max-width: 500px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0;">Edit Profile</h3>
+                <button class="btn btn-outline" id="close-edit-modal" style="border:none; padding: 0.5rem;"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="form-edit-profile">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="edit-full-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="edit-username" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" id="edit-country" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea id="edit-bio" class="form-input" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="btn-save-profile">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="stats-modal" class="modal-overlay hidden" style="z-index: 10000;">
+        <div class="modal-content auth-card" style="max-width: 400px; width: 90%; max-height: 80vh; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 id="stats-modal-title" style="margin: 0;">List</h3>
+                <button id="close-stats-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+            </div>
+            <div id="stats-modal-list" style="overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; padding-right: 0.5rem;">
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module" src="js/profile.js"></script>
+</body>
+</html>
+

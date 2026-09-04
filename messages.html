@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body style="height: 100vh; overflow: hidden; display: flex; flex-direction: column;">
+    
+    <nav class="navbar" style="position: relative;">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html" class="active">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn btn-outline" style="padding: 0.5rem; border:none;" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+                <a href="messages.html" class="active" class="btn btn-primary" style="padding: 0.5rem;"><i class="fas fa-envelope"></i></a>
+                <a href="profile.html" class="btn btn-outline" style="border:none; padding: 0.5rem 1rem;">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="flex: 1; padding: 2rem 0; display: flex; flex-direction: column; height: 100%;">
+        
+        <div class="inbox-layout">
+            
+            
+            <div class="inbox-sidebar">
+                <div style="padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border);">
+                    <h3 style="margin: 0;">Messages</h3>
+                </div>
+                <div id="contacts-list">
+                    
+                    <div style="padding: 2rem; text-align: center; color:var(--color-text-muted);">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="inbox-main">
+                <div id="chat-empty" style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--color-text-muted);">
+                    <i class="fas fa-paper-plane" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <h3>Select a connection to start messaging.</h3>
+                </div>
+
+                <div id="chat-active" style="display:none; flex-direction:column; height: 100%;">
+                    <div class="chat-header">
+                        <div class="post-avatar" id="chat-avatar" style="width:40px; height:40px; font-size:1rem;">?</div>
+                        <div>
+                            <h3 id="chat-name" style="margin:0; font-size:1rem;">Name</h3>
+                            <p id="chat-username" style="margin:0; font-size:0.75rem; color:var(--color-text-muted);">@user</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        
+                    </div>
+
+                    <form class="chat-input-area" id="chat-form">
+                        <input type="text" id="chat-input" class="form-input" placeholder="Type a message..." style="flex:1;" required autocomplete="off">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module" src="js/messages.js"></script>
+</body>
+</html>
+

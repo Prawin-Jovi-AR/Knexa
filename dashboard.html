@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="messages.html" class="btn btn-outline" style="border:none; padding: 0.5rem;"><i class="fas fa-envelope"></i></a>
+                <a href="profile.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Profile</a>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+                        </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+    <div class="container" style="padding-top: 8rem; min-height: 100vh;">
+        <h1 class="section-title">Dashboard</h1>
+        <p class="section-subtitle" style="text-align: left; margin: 0; margin-bottom: 2rem;">Welcome to your KNEXA dashboard!</p>
+
+        
+        <div class="dna-summary-card">
+            <div class="dna-summary-header">
+                <h2>Skill DNA Overview</h2>
+                <div class="dna-percentage" id="dash-dna-percentage">0%</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="dash-dna-bar" style="width: 0%;"></div>
+            </div>
+            <div class="dna-stats-grid">
+                <div class="dna-stat-item">
+                    <i class="fas fa-brain"></i>
+                    <h3 id="dash-shared">0</h3>
+                    <p>Shared</p>
+                </div>
+                <div class="dna-stat-item">
+                    <i class="fas fa-seedling"></i>
+                    <h3 id="dash-learning">0</h3>
+                    <p>Learning</p>
+                </div>
+                <div class="dna-stat-item">
+                    <i class="fas fa-telescope"></i>
+                    <h3 id="dash-exploring">0</h3>
+                    <p>Exploring</p>
+                </div>
+                <div class="dna-stat-item" style="display:flex; justify-content:center; align-items:center;">
+                    <a href="skill-dna.html" class="btn btn-primary" style="width:100%;">View Skill DNA</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="dna-summary-card" style="margin-top: 2rem;">
+            <div class="dna-summary-header">
+                <h2>Active Learning Goals</h2>
+                <a href="profile.html" class="btn btn-outline" style="border:none;">Manage Goals &rarr;</a>
+            </div>
+            <div id="dash-goals-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                <p style="color: var(--color-text-muted);">Loading goals...</p>
+            </div>
+        </div>
+
+        
+        <div class="dna-summary-card" style="margin-top: 2rem;">
+            <div class="dna-summary-header">
+                <h2>Pending Connections</h2>
+            </div>
+            <div id="dash-pending-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                <p style="color: var(--color-text-muted);">Checking for requests...</p>
+            </div>
+        </div>
+
+        
+        <div class="dna-summary-card" style="margin-top: 2rem;">
+            <div class="dna-summary-header">
+                <h2>Top KNEXA Matches</h2>
+                
+            </div>
+            
+            <div id="dash-matches-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                <p style="color: var(--color-text-muted);">Finding your connections...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module">
+        import { supabase } from './js/supabase-config.js';
+        import { calculateAllMatches } from './js/matching-engine.js';
+        import { getAuthenticatedUser } from './js/auth.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const currentUser = await getAuthenticatedUser();
+                if (!currentUser) return;
+            // 1. Skill DNA Summary
+            const [shared, learning, exploring] = await Promise.all([
+                supabase.from('skills_shared').select('id', { count: 'exact' }).eq('user_id', currentUser.id),
+                supabase.from('skills_learning').select('id', { count: 'exact' }).eq('user_id', currentUser.id),
+                supabase.from('skills_exploring').select('id', { count: 'exact' }).eq('user_id', currentUser.id)
+            ]);
+
+            const sCount = shared.count || 0;
+            const lCount = learning.count || 0;
+            const eCount = exploring.count || 0;
+
+            document.getElementById('dash-shared').innerText = sCount;
+            document.getElementById('dash-learning').innerText = lCount;
+            document.getElementById('dash-exploring').innerText = eCount;
+
+            let score = 0;
+            score += Math.min(50, sCount * 10);
+            score += Math.min(40, lCount * 10);
+            score += Math.min(10, eCount * 5);
+            score = Math.min(100, score);
+            
+            document.getElementById('dash-dna-percentage').innerText = score + '%';
+            document.getElementById('dash-dna-bar').style.width = score + '%';
+            // 1.5 Pending Connections
+            const { data: pendingReqs } = await supabase.from('connections')
+                .select('id, requester_id, profiles!requester_id(full_name, username)')
+                .eq('receiver_id', currentUser.id)
+                .eq('status', 'pending');
+            
+            const pendingContainer = document.getElementById('dash-pending-container');
+            if (!pendingReqs || pendingReqs.length === 0) {
+                pendingContainer.innerHTML = '<p style="color: var(--color-text-muted);">No pending requests.</p>';
+            } else {
+                pendingContainer.innerHTML = pendingReqs.map(req => `
+                    <div style="background: var(--color-bg-alt); padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--color-secondary);">
+                        <div>
+                            <h3 style="margin:0;">${req.profiles.full_name} (@${req.profiles.username})</h3>
+                            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin:0;">Wants to connect with you.</p>
+                        </div>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-primary" onclick="window.acceptRequest('${req.id}')">Accept</button>
+                            <button class="btn btn-outline" onclick="window.declineRequest('${req.id}')">Decline</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // 2. Top KNEXA Matches
+            const allMatches = await calculateAllMatches(currentUser);
+            const topMatches = allMatches.slice(0, 3);
+            const container = document.getElementById('dash-matches-container');
+
+            if (topMatches.length === 0) {
+                container.innerHTML = '<p style="color: var(--color-text-muted);">No strong matches found yet. Add more skills to your Skill DNA!</p>';
+                return;
+            }
+
+            container.innerHTML = topMatches.map(m => `
+                <div style="background: var(--color-bg-alt); padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--color-primary);">
+                    <div>
+                        <div style="display:flex; align-items:center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                            <h3 style="margin:0;">${m.profile.full_name || m.profile.username}</h3>
+                            <span style="font-size: 0.75rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">${m.score}% Match</span>
+                        </div>
+                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin:0;">
+                            Can teach you: <strong>${m.learnFromThem}</strong> | Wants to learn: <strong>${m.teachThem}</strong>
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="padding: 0.5rem 1rem;">Connect</a>
+                </div>
+            `).join('');
+            // 3. Active Learning Goals
+            const { data: goals } = await supabase.from('goals').select('*').eq('user_id', currentUser.id).order('target_date', { ascending: true }).limit(3);
+            const goalsContainer = document.getElementById('dash-goals-container');
+            if (!goals || goals.length === 0) {
+                goalsContainer.innerHTML = '<p style="color: var(--color-text-muted);">No active goals. Add some on your profile!</p>';
+            } else {
+                goalsContainer.innerHTML = goals.map(g => `
+                    <div style="background: var(--color-bg-alt); padding: 1rem 1.5rem; border-radius: var(--border-radius-md); border-left: 4px solid #fbbf24;">
+                        <h3 style="margin: 0 0 0.25rem 0; font-size: 1rem;">${g.title}</h3>
+                        <p style="margin: 0; font-size: 0.875rem; color: var(--color-text-muted);">
+                            <i class="far fa-calendar-alt"></i> Target: ${new Date(g.target_date).toLocaleDateString()}
+                        </p>
+                    </div>
+                `).join('');
+                }
+            } catch (error) {
+                console.error('[KNEXA ERROR]', error);
+                alert('Failed to load dashboard data.');
+            }
+        });
+        // Global handlers for connections
+        window.acceptRequest = async (id) => {
+            await supabase.from('connections').update({ status: 'accepted' }).eq('id', id);
+            window.location.reload();
+        };
+
+        window.declineRequest = async (id) => {
+            await supabase.from('connections').delete().eq('id', id);
+            window.location.reload();
+        };
+    </script>
+</body>
+</html>
+

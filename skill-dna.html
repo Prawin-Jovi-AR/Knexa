@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill DNA | KNEXA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); }</script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KNEXA</a>
+            <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="discover.html">Discover</a></li>
+                    <li><a href="skill-dna.html" class="active">Skill DNA</a></li>
+                    
+                    <li><a href="messages.html">Skill Exchange</a></li>
+                    <li><a href="feed.html">Knowledge Hub</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            <div class="nav-actions">
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="messages.html" class="btn btn-outline" style="border:none; padding: 0.5rem;"><i class="fas fa-envelope"></i></a>
+                <a href="profile.html" class="btn btn-outline" style="border:none; padding: 0.5rem;">Profile</a>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+                        </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</nav>
+
+    
+    <div class="container" style="padding-top: 8rem; min-height: 100vh; padding-bottom: 4rem;">
+        
+        
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <h1 class="section-title text-gradient">SKILL DNA</h1>
+            <p class="section-subtitle">Your knowledge. Your potential. Your path.</p>
+        </div>
+
+        
+        <div class="dna-summary-card">
+            <div class="dna-summary-header">
+                <h2>DNA Completion</h2>
+                <div class="dna-percentage" id="dna-completion-text">0%</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="dna-completion-bar" style="width: 0%;"></div>
+            </div>
+            <div class="dna-stats-grid">
+                <div class="dna-stat-item">
+                    <i class="fas fa-brain"></i>
+                    <h3 id="stat-shared">0</h3>
+                    <p>Skills Shared</p>
+                </div>
+                <div class="dna-stat-item">
+                    <i class="fas fa-seedling"></i>
+                    <h3 id="stat-learning">0</h3>
+                    <p>Learning</p>
+                </div>
+                <div class="dna-stat-item">
+                    <i class="fas fa-telescope"></i>
+                    <h3 id="stat-exploring">0</h3>
+                    <p>Exploring</p>
+                </div>
+                <div class="dna-stat-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 id="stat-avg-progress">0%</h3>
+                    <p>Avg Progress</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="dna-section">
+            <div class="dna-section-header">
+                <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-brain" style="color:var(--color-primary);"></i> Can Share / Teach</h2>
+                <button class="btn btn-primary" onclick="openModal('modal-add-shared')"><i class="fas fa-plus"></i> Add Skill</button>
+            </div>
+            <div class="dna-grid" id="grid-shared">
+                <p class="empty-state">You haven't added any skills you can share yet.</p>
+            </div>
+        </div>
+
+        
+        <div class="dna-section" style="margin-top: 4rem;">
+            <div class="dna-section-header">
+                <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-seedling" style="color:var(--color-secondary);"></i> Learning</h2>
+                <button class="btn btn-primary" onclick="openModal('modal-add-learning')"><i class="fas fa-plus"></i> Add Skill</button>
+            </div>
+            <div class="dna-grid" id="grid-learning">
+                <p class="empty-state">You aren't learning any new skills yet.</p>
+            </div>
+        </div>
+
+        
+        <div class="dna-section" style="margin-top: 4rem;">
+            <div class="dna-section-header">
+                <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-telescope" style="color:#8b5cf6;"></i> Exploring</h2>
+                <button class="btn btn-primary" onclick="openModal('modal-add-exploring')"><i class="fas fa-plus"></i> Add Skill</button>
+            </div>
+            <div class="dna-grid" id="grid-exploring">
+                <p class="empty-state">You haven't added any skills you want to explore.</p>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div id="modal-add-shared" class="modal-overlay hidden">
+        <div class="modal-content auth-card">
+            <span class="close-btn" onclick="closeModal('modal-add-shared')">&times;</span>
+            <h2>Add Skill to Share</h2>
+            <form id="form-add-shared" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input type="text" id="shared-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="shared-category" class="form-input" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Science">Science</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Experience Level</label>
+                    <select id="shared-level" class="form-input" required>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Confidence (0-100%)</label>
+                    <input type="number" id="shared-confidence" class="form-input" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label>Years of Experience</label>
+                    <input type="number" id="shared-years" class="form-input" min="0" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Save Skill</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modal-add-learning" class="modal-overlay hidden">
+        <div class="modal-content auth-card">
+            <span class="close-btn" onclick="closeModal('modal-add-learning')">&times;</span>
+            <h2>Add Learning Skill</h2>
+            <form id="form-add-learning" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input type="text" id="learning-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="learning-category" class="form-input" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Science">Science</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Current Progress (0-100%)</label>
+                    <input type="number" id="learning-progress" class="form-input" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label>Learning Goal</label>
+                    <input type="text" id="learning-goal" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Save Skill</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modal-add-exploring" class="modal-overlay hidden">
+        <div class="modal-content auth-card">
+            <span class="close-btn" onclick="closeModal('modal-add-exploring')">&times;</span>
+            <h2>Add Exploring Skill</h2>
+            <form id="form-add-exploring" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input type="text" id="exploring-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="exploring-category" class="form-input" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Science">Science</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reason for Interest</label>
+                    <input type="text" id="exploring-reason" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Save Skill</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modal-ai-insights" class="modal-overlay hidden">
+        <div class="modal-content auth-card" style="max-width: 600px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-magic" style="color:var(--color-primary);"></i> AI Skill Insights</h2>
+                <span class="close-btn" onclick="closeModal('modal-ai-insights')">&times;</span>
+            </div>
+            <div id="ai-insight-content" style="min-height: 150px; padding: 1.5rem; background: var(--color-bg); border-radius: var(--border-radius-md); border: 1px solid var(--color-border); font-family: monospace; white-space: pre-wrap; line-height: 1.6;">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/ai-helper.js"></script>
+    <script type="module" src="js/app.js?v=2"></script>
+    <script type="module" src="js/skill-dna.js"></script>
+    
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
+
