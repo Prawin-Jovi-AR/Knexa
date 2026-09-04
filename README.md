@@ -41,7 +41,7 @@ To run the Knexa platform locally on your machine, follow these steps:
 ### Installation & Setup
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/knexa.git
+   git clone https://github.com/Prawin-Jovi-AR/Knexa.git
    cd knexa
    ```
 2. **Setup Supabase Environment Variables:**
