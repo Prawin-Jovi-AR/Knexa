@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
         });
 
-        document.querySelectorAll('.nav-links a, .nav-actions a').forEach(link => {
-            link.addEventListener('click', () => {
+        navMenu.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('button')) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-            });
+            }
         });
     }
 
@@ -156,8 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fas fa-envelope"></i>
                         <span id="nav-msg-badge" style="display:none; position:absolute; top:2px; right:2px; width:10px; height:10px; background-color:#ef4444; border-radius:50%; border:2px solid var(--color-bg-main);"></span>
                     </a>
-                    <a href="profile.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Profile</a>
-                    <button id="logout-btn" class="btn btn-outline" style="margin-left: 0.5rem;">Logout</button>
+                    <a href="profile.html" class="btn btn-primary">Profile</a>
+                    <button id="logout-btn" class="btn btn-outline">Logout</button>
                 `;
 
                 checkUnreadMessages(user.id);
