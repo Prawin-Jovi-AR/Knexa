@@ -107,9 +107,7 @@ img {
 }
 
 .section-bg {
-    background-color: color-mix(in srgb, var(--color-bg-alt) 55%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: color-mix(in srgb, var(--color-bg-alt) 50%, transparent);
 }
 
 
