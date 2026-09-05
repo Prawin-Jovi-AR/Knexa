@@ -97,9 +97,15 @@ function renderSkillList(elementId, skillsArray) {
     const el = document.getElementById(elementId);
     if (skillsArray && skillsArray.length > 0) {
         el.innerHTML = skillsArray.slice(0, 5).map(s => `
-            <li>
-                <span>${s.skill_name}</span>
-                <span class="skill-list-category">${s.category || 'General'}</span>
+            <li ${elementId === 'list-learning' ? 'style="flex-direction: column; align-items: stretch; gap: 0.5rem;"' : ''}>
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>${s.skill_name} ${elementId === 'list-learning' ? `<span style="font-size:0.75rem; color:var(--color-text-muted); margin-left:0.5rem;">${s.progress}%</span>` : ''}</span>
+                    <span class="skill-list-category">${s.category || 'General'}</span>
+                </div>
+                ${elementId === 'list-learning' ? `
+                <div class="progress-bar-container" style="height: 4px; margin: 0;">
+                    <div class="progress-bar-fill" style="width: ${s.progress}%;"></div>
+                </div>` : ''}
             </li>
         `).join('');
     }
