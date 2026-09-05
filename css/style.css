@@ -107,7 +107,7 @@ img {
 }
 
 .section-bg {
-    background-color: color-mix(in srgb, var(--color-bg-alt) 30%, transparent);
+    background-color: color-mix(in srgb, var(--color-bg-alt) 20%, transparent);
 }
 
 
