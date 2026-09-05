@@ -165,9 +165,14 @@ async function loadSkillsData() {
     const listLearning = document.getElementById('list-learning');
     if (lCount > 0) {
         listLearning.innerHTML = mySkills.learning.slice(0, 5).map(s => `
-            <li>
-                <span>${s.skill_name} <span style="font-size:0.75rem; color:var(--color-text-muted); margin-left:0.5rem;">${s.progress}%</span></span>
-                <span class="skill-list-category">${s.category || 'General'}</span>
+            <li style="flex-direction: column; align-items: stretch; gap: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>${s.skill_name} <span style="font-size:0.75rem; color:var(--color-text-muted); margin-left:0.5rem;">${s.progress}%</span></span>
+                    <span class="skill-list-category">${s.category || 'General'}</span>
+                </div>
+                <div class="progress-bar-container" style="height: 4px; margin: 0;">
+                    <div class="progress-bar-fill" style="width: ${s.progress}%;"></div>
+                </div>
             </li>
         `).join('');
     }
