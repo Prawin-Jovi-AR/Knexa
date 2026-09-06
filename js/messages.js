@@ -99,6 +99,9 @@ function selectContact(contact) {
     const chatActive = document.getElementById('chat-active');
     chatActive.style.display = 'flex';
 
+    const layout = document.querySelector('.inbox-layout');
+    if (layout) layout.classList.add('show-chat');
+
     document.getElementById('chat-name').innerText = contact.full_name;
     document.getElementById('chat-username').innerText = '@' + contact.username;
     document.getElementById('chat-avatar').innerText = (contact.full_name || 'U').charAt(0).toUpperCase();
@@ -190,4 +193,9 @@ window.editDirectMessage = async (msgId, currentContent) => {
     } else {
         await loadChatHistory(activeContact.id);
     }
+};
+
+window.closeChat = () => {
+    const layout = document.querySelector('.inbox-layout');
+    if (layout) layout.classList.remove('show-chat');
 };
