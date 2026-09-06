@@ -1,11 +1,9 @@
-/* ==========================================================================
-   CSS Variables & Theming
-   ========================================================================== */
+
 :root {
-    /* Light Theme */
-    --color-primary: #4F46E5; /* Indigo */
+    
+    --color-primary: #4F46E5; 
     --color-primary-hover: #4338CA;
-    --color-secondary: #0ea5e9; /* Sky Blue */
+    --color-secondary: #0ea5e9; 
     --color-secondary-hover: #0284c7;
     
     --color-bg-main: #FFFFFF;
@@ -58,9 +56,7 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
-/* ==========================================================================
-   Reset & Base Styles
-   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -136,9 +132,7 @@ img {
     margin: 0 auto;
 }
 
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -194,9 +188,7 @@ img {
     color: var(--color-primary);
 }
 
-/* ==========================================================================
-   Navigation
-   ========================================================================== */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -307,9 +299,7 @@ img {
     transition: all var(--transition-normal);
 }
 
-/* ==========================================================================
-   Hero Section
-   ========================================================================== */
+
 .hero {
     padding-top: 8rem;
     min-height: 100vh;
@@ -399,7 +389,7 @@ img {
     color: white;
 }
 
-/* Hero Visuals */
+
 .hero-visual {
     position: relative;
     height: 500px;
@@ -499,7 +489,7 @@ img {
     z-index: 1;
 }
 
-/* Dynamic Hero Interaction */
+
 .dynamic-hero-interaction {
     display: flex;
     flex-direction: column;
@@ -609,9 +599,7 @@ img {
 .badge-2 { animation-delay: 1s; }
 .badge-3 { animation-delay: 2s; }
 
-/* ==========================================================================
-   How KNEXA Works
-   ========================================================================== */
+
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -666,9 +654,7 @@ img {
     color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   Feature Preview
-   ========================================================================== */
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -712,9 +698,7 @@ img {
     color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   Trending Skills
-   ========================================================================== */
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -770,13 +754,11 @@ img {
 }
 
 .trend.up {
-    color: #10B981; /* Emerald */
+    color: #10B981; 
     font-weight: 600;
 }
 
-/* ==========================================================================
-   Global Community
-   ========================================================================== */
+
 .community-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -841,9 +823,7 @@ img {
     gap: 0.5rem;
 }
 
-/* ==========================================================================
-   Final CTA
-   ========================================================================== */
+
 .final-cta {
     background-color: var(--color-bg-alt);
 }
@@ -925,9 +905,7 @@ img {
     right: -100px;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+
 .footer {
     background-color: var(--color-bg-card);
     padding: 6rem 0 2rem;
@@ -1002,9 +980,7 @@ img {
     font-size: 0.875rem;
 }
 
-/* ==========================================================================
-   Animations
-   ========================================================================== */
+
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -1031,9 +1007,7 @@ img {
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+
 @media (max-width: 992px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -1133,9 +1107,7 @@ img {
     }
 }
 
-/* ==========================================================================
-   Auth Modal
-   ========================================================================== */
+
 .modal {
     display: none; 
     position: fixed; 
@@ -1274,9 +1246,7 @@ img {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================================================
-   Standalone Auth Pages
-   ========================================================================== */
+
 .auth-page {
     display: flex;
     flex-direction: column;
@@ -1339,9 +1309,7 @@ img {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-   Skill DNA Specific Styles
-   ========================================================================== */
+
 .dna-summary-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
@@ -1439,7 +1407,7 @@ img {
     border-radius: var(--border-radius-lg);
 }
 
-/* Modals */
+
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -1486,9 +1454,7 @@ img {
     font-size: 0.75rem;
 }
 
-/* ==========================================================================
-   KNEXA Matches Styles
-   ========================================================================== */
+
 .matches-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1650,9 +1616,7 @@ img {
     gap: 1rem;
 }
 
-/* ==========================================================================
-   Profile Page Layout
-   ========================================================================== */
+
 .profile-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -1789,9 +1753,7 @@ img {
     opacity: 0.5;
 }
 
-/* ==========================================================================
-   Feed Layout
-   ========================================================================== */
+
 .feed-layout {
     display: grid;
     grid-template-columns: 250px 1fr 300px;
@@ -1869,9 +1831,7 @@ img {
     font-weight: 600;
 }
 
-/* ==========================================================================
-   Public Profile / Connections
-   ========================================================================== */
+
 .connection-status-banner {
     background: var(--color-bg-alt);
     border-left: 4px solid var(--color-primary);
@@ -1883,9 +1843,7 @@ img {
     align-items: center;
 }
 
-/* ==========================================================================
-   Messages Inbox Layout
-   ========================================================================== */
+
 .inbox-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -1992,9 +1950,7 @@ img {
     }
 }
 
-/* ==========================================================================
-   Discover Layout
-   ========================================================================== */
+
 .discover-hero {
     position: relative;
     overflow: hidden;
@@ -2078,7 +2034,7 @@ img {
         grid-template-columns: 1fr;
     }
     .filter-sidebar {
-        display: none; /* Hide on mobile initially, could become a drawer */
+        display: none; 
     }
 }
 
@@ -2116,7 +2072,7 @@ img {
     gap: 1.5rem;
 }
 
-/* Modals */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -2161,9 +2117,7 @@ img {
     display: block;
 }
 
-/* ==========================================================================
-   Profile Page Layout
-   ========================================================================== */
+
 .profile-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -2311,7 +2265,7 @@ img {
     gap: 1.5rem;
 }
 
-/* Modals */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -2356,9 +2310,7 @@ img {
     display: block;
 }
 
-/* ==========================================================================
-   Profile Page Layout
-   ========================================================================== */
+
 .profile-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -2497,7 +2449,7 @@ img {
 
 .hidden { display: none !important; }
 
-/* Small buttons */
+
 .btn-small {
     padding: 0.25rem 0.75rem;
     font-size: 0.875rem;
@@ -2505,7 +2457,7 @@ img {
     height: auto;
 }
 
-/* Custom scrollbar for chat messages */
+
 .chat-messages::-webkit-scrollbar {
     width: 6px;
 }
